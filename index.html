@@ -548,6 +548,179 @@
       animation: scrollDown 1.8s infinite;
     }
 
+
+    /* RETRATO PRINCIPAL */
+    .portrait-card {
+      position: relative;
+      width: min(470px, 94%);
+      aspect-ratio: .87;
+      padding: 11px;
+      border-radius: 44px;
+      background: linear-gradient(
+        135deg,
+        var(--primary),
+        var(--secondary),
+        var(--orange),
+        var(--accent),
+        var(--lime)
+      );
+      background-size: 300% 300%;
+      box-shadow:
+        0 36px 100px rgba(76, 28, 139, .27),
+        0 0 0 1px rgba(255,255,255,.55);
+      animation:
+        cardFloat 6s ease-in-out infinite,
+        gradientMove 7s ease infinite;
+      isolation: isolate;
+      transform: rotate(2.5deg);
+    }
+
+    .portrait-card::before {
+      content: "";
+      position: absolute;
+      inset: -34px;
+      z-index: -2;
+      border-radius: 60px;
+      background: conic-gradient(
+        from 30deg,
+        rgba(108,44,255,.42),
+        rgba(255,60,172,.42),
+        rgba(255,138,0,.38),
+        rgba(0,212,255,.42),
+        rgba(183,255,60,.32),
+        rgba(108,44,255,.42)
+      );
+      filter: blur(32px);
+      opacity: .75;
+      animation: spin 15s linear infinite;
+    }
+
+    .portrait-card::after {
+      content: "";
+      position: absolute;
+      inset: 11px;
+      z-index: 3;
+      pointer-events: none;
+      border-radius: 34px;
+      box-shadow:
+        inset 0 0 0 1px rgba(255,255,255,.34),
+        inset 0 -130px 110px rgba(23,21,47,.24);
+    }
+
+    .portrait-frame {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      border-radius: 34px;
+      background: linear-gradient(145deg, #ffd8ac, #b06c36);
+    }
+
+    .portrait-frame img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: 50% 18%;
+      transform: scale(1.025);
+      transition: transform .75s cubic-bezier(.2,.8,.2,1), filter .75s ease;
+      filter: saturate(1.05) contrast(1.02);
+    }
+
+    .portrait-card:hover .portrait-frame img {
+      transform: scale(1.075);
+      filter: saturate(1.12) contrast(1.04);
+    }
+
+    .portrait-shine {
+      position: absolute;
+      inset: 0;
+      z-index: 2;
+      pointer-events: none;
+      background:
+        linear-gradient(
+          115deg,
+          transparent 20%,
+          rgba(255,255,255,.28) 38%,
+          transparent 53%
+        );
+      transform: translateX(-125%);
+      animation: portraitShine 5.5s ease-in-out infinite 1.4s;
+    }
+
+    .portrait-info {
+      position: absolute;
+      z-index: 5;
+      left: 30px;
+      right: 30px;
+      bottom: 28px;
+      padding: 17px 18px;
+      border-radius: 20px;
+      color: white;
+      background:
+        linear-gradient(135deg, rgba(23,21,47,.82), rgba(46,20,105,.68));
+      border: 1px solid rgba(255,255,255,.28);
+      box-shadow: 0 18px 45px rgba(0,0,0,.22);
+      backdrop-filter: blur(18px);
+    }
+
+    .portrait-info strong {
+      display: block;
+      font-size: 1.12rem;
+      letter-spacing: -.02em;
+    }
+
+    .portrait-info span {
+      display: block;
+      margin-top: 5px;
+      color: rgba(255,255,255,.78);
+      font-size: .78rem;
+      font-weight: 750;
+      line-height: 1.4;
+    }
+
+    .portrait-rocket-badge {
+      position: absolute;
+      z-index: 6;
+      top: -18px;
+      right: -18px;
+      width: 74px;
+      height: 74px;
+      display: grid;
+      place-items: center;
+      border-radius: 25px;
+      color: white;
+      background: linear-gradient(135deg, var(--primary), var(--secondary), var(--orange));
+      border: 4px solid rgba(255,255,255,.8);
+      box-shadow: 0 18px 40px rgba(108,44,255,.34);
+      animation: float 4.8s ease-in-out infinite -1s;
+      transform: rotate(8deg);
+    }
+
+    .portrait-rocket-badge svg {
+      width: 37px;
+      height: 37px;
+    }
+
+    .portrait-dot {
+      position: absolute;
+      z-index: 6;
+      left: -19px;
+      bottom: 94px;
+      width: 40px;
+      height: 40px;
+      border-radius: 14px;
+      background: var(--lime);
+      border: 4px solid rgba(255,255,255,.82);
+      box-shadow: 0 14px 34px rgba(133,200,32,.35);
+      animation: float 4.3s ease-in-out infinite -2.3s;
+    }
+
+    @keyframes portraitShine {
+      0%, 52% { transform: translateX(-125%); opacity: 0; }
+      62% { opacity: 1; }
+      82%, 100% { transform: translateX(125%); opacity: 0; }
+    }
+
     /* MARQUEE */
     .marquee-wrap {
       overflow: hidden;
@@ -1384,6 +1557,11 @@
         min-height: 510px;
       }
 
+      .portrait-card {
+        width: min(430px, 92%);
+      }
+
+
       .hero h1 {
         max-width: 780px;
       }
@@ -1433,6 +1611,46 @@
       .hero-visual {
         min-height: 430px;
       }
+
+      .portrait-card {
+        width: 92%;
+        border-radius: 31px;
+        padding: 8px;
+      }
+
+      .portrait-frame,
+      .portrait-card::after {
+        border-radius: 24px;
+      }
+
+      .portrait-info {
+        left: 18px;
+        right: 18px;
+        bottom: 18px;
+        padding: 14px 15px;
+      }
+
+      .portrait-rocket-badge {
+        top: -14px;
+        right: -10px;
+        width: 60px;
+        height: 60px;
+        border-radius: 20px;
+      }
+
+      .portrait-rocket-badge svg {
+        width: 31px;
+        height: 31px;
+      }
+
+      .portrait-dot {
+        left: -10px;
+        bottom: 86px;
+        width: 32px;
+        height: 32px;
+        border-radius: 11px;
+      }
+
 
       .rocket-card {
         width: 96%;
@@ -1596,587 +1814,15 @@
           </div>
         </div>
 
-        <div class="hero-visual reveal" aria-hidden="true">
-          <span class="orb one"></span>
-          <span class="orb two"></span>
-          <span class="orb three"></span>
+        <div class="hero-visual reveal">
+          <span class="orb one" aria-hidden="true"></span>
+          <span class="orb two" aria-hidden="true"></span>
+          <span class="orb three" aria-hidden="true"></span>
 
-          <div class="floating-label a">+ CRECIMIENTO</div>
-          <div class="floating-label b">IA + NEGOCIO</div>
+          <div class="floating-label a" aria-hidden="true">+ CRECIMIENTO</div>
+          <div class="floating-label b" aria-hidden="true">IA + NEGOCIO</div>
 
-          <div class="rocket-card">
-            <div class="rocket-inner">
-              <div class="orbit-ring">
-                <span class="orbit-dot"></span>
-              </div>
-
-              <svg class="rocket" viewBox="0 0 240 320" fill="none">
-                <defs>
-                  <linearGradient id="bodyGradient" x1="42" y1="26" x2="180" y2="259" gradientUnits="userSpaceOnUse">
-                    <stop stop-color="#ffffff"/>
-                    <stop offset="1" stop-color="#dbe8ff"/>
-                  </linearGradient>
-                  <linearGradient id="wingGradient" x1="41" y1="146" x2="198" y2="260" gradientUnits="userSpaceOnUse">
-                    <stop stop-color="#ff3cac"/>
-                    <stop offset="1" stop-color="#ff8a00"/>
-                  </linearGradient>
-                  <linearGradient id="windowGradient" x1="91" y1="83" x2="155" y2="148" gradientUnits="userSpaceOnUse">
-                    <stop stop-color="#00d4ff"/>
-                    <stop offset="1" stop-color="#6c2cff"/>
-                  </linearGradient>
-                  <linearGradient id="flameGradient" x1="120" y1="242" x2="120" y2="317" gradientUnits="userSpaceOnUse">
-                    <stop stop-color="#ffd93d"/>
-                    <stop offset=".52" stop-color="#ff8a00"/>
-                    <stop offset="1" stop-color="#ff3cac"/>
-                  </linearGradient>
-                </defs>
-
-                <g class="rocket-flame">
-                  <path d="M96 235c2 34 13 60 24 78 11-18 22-44 24-78H96Z" fill="url(#flameGradient)"/>
-                  <path d="M108 239c2 19 7 34 12 45 5-11 10-26 12-45h-24Z" fill="#fff7a8"/>
-                </g>
-
-                <path d="M96 189c-25 8-41 26-48 55l51-14-3-41Z" fill="url(#wingGradient)"/>
-                <path d="M144 189c25 8 41 26 48 55l-51-14 3-41Z" fill="url(#wingGradient)"/>
-
-                <path d="M120 17C78 49 65 99 76 187c3 25 21 52 44 68 23-16 41-43 44-68 11-88-2-138-44-170Z" fill="url(#bodyGradient)"/>
-                <path d="M120 17c-17 13-29 28-37 47h74c-8-19-20-34-37-47Z" fill="#6c2cff"/>
-                <circle cx="120" cy="117" r="34" fill="#1d1b43"/>
-                <circle cx="120" cy="117" r="25" fill="url(#windowGradient)"/>
-                <circle cx="110" cy="107" r="7" fill="white" fill-opacity=".75"/>
-                <path d="M97 233h46l-6 23h-34l-6-23Z" fill="#c7d7ef"/>
-                <path d="M78 188c4 25 20 50 42 67 22-17 38-42 42-67-17 11-67 11-84 0Z" fill="#f3f7ff" fill-opacity=".55"/>
-              </svg>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="scroll-indicator" aria-hidden="true">
-        Descubre más
-        <span></span>
-      </div>
-    </section>
-
-    <div class="marquee-wrap" aria-hidden="true">
-      <div class="marquee">
-        <span class="marquee-item"><i></i>Consultoría estratégica</span>
-        <span class="marquee-item"><i></i>Ventas de alto impacto</span>
-        <span class="marquee-item"><i></i>Marketing digital</span>
-        <span class="marquee-item"><i></i>Inteligencia artificial</span>
-        <span class="marquee-item"><i></i>Automatización</span>
-        <span class="marquee-item"><i></i>Experiencia del cliente</span>
-        <span class="marquee-item"><i></i>Consultoría estratégica</span>
-        <span class="marquee-item"><i></i>Ventas de alto impacto</span>
-        <span class="marquee-item"><i></i>Marketing digital</span>
-        <span class="marquee-item"><i></i>Inteligencia artificial</span>
-        <span class="marquee-item"><i></i>Automatización</span>
-        <span class="marquee-item"><i></i>Experiencia del cliente</span>
-      </div>
-    </div>
-
-    <section class="section" id="servicios">
-      <div class="container">
-        <div class="reveal">
-          <span class="eyebrow">Servicios</span>
-          <h2 class="section-title">
-            Cuatro motores para hacer
-            <span class="gradient-text">despegar tu empresa.</span>
-          </h2>
-          <p class="section-subtitle">
-            Diseñamos soluciones a la medida para mejorar decisiones, acelerar ventas,
-            fortalecer tu marca e incorporar inteligencia artificial con visión de negocio.
-          </p>
-        </div>
-
-        <div class="services-grid">
-          <article class="service-card consulting reveal">
-            <div class="service-top">
-              <div class="service-icon">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M4 19V9m6 10V5m6 14v-7m4 7H2"/>
-                  <path d="m4 8 6-4 6 7 4-3"/>
-                </svg>
-              </div>
-              <span class="service-number">01</span>
-            </div>
-            <h3>Consultoría</h3>
-            <p>
-              Diagnóstico, estrategia, innovación y hojas de ruta accionables para resolver desafíos
-              complejos y convertir oportunidades en resultados medibles.
-            </p>
-            <div class="service-tags">
-              <span>Estrategia</span>
-              <span>Innovación</span>
-              <span>Procesos</span>
-              <span>Transformación</span>
-            </div>
-          </article>
-
-          <article class="service-card sales reveal">
-            <div class="service-top">
-              <div class="service-icon">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M4 18 18 4"/>
-                  <path d="M10 4h8v8"/>
-                  <path d="M5 10v9h9"/>
-                </svg>
-              </div>
-              <span class="service-number">02</span>
-            </div>
-            <h3>Ventas</h3>
-            <p>
-              Diseñamos procesos comerciales, propuestas de valor, embudos y experiencias
-              que impulsan la conversión y fortalecen relaciones de largo plazo.
-            </p>
-            <div class="service-tags">
-              <span>Embudo comercial</span>
-              <span>CRM</span>
-              <span>Propuesta de valor</span>
-              <span>Negociación</span>
-            </div>
-          </article>
-
-          <article class="service-card marketing reveal">
-            <div class="service-top">
-              <div class="service-icon">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M3 11v2a2 2 0 0 0 2 2h2l4 4v-6l7-3V6l-11 5H5a2 2 0 0 0-2 2Z"/>
-                  <path d="M18 7.5c1.5.7 2.5 2.2 2.5 4s-1 3.3-2.5 4"/>
-                </svg>
-              </div>
-              <span class="service-number">03</span>
-            </div>
-            <h3>Marketing</h3>
-            <p>
-              Posicionamos marcas con contenidos, campañas y experiencias digitales
-              pensadas para conectar, diferenciar y generar demanda.
-            </p>
-            <div class="service-tags">
-              <span>Branding</span>
-              <span>Contenido</span>
-              <span>Performance</span>
-              <span>Customer Experience</span>
-            </div>
-          </article>
-
-          <article class="service-card ai reveal">
-            <div class="service-top">
-              <div class="service-icon">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">
-                  <rect x="5" y="5" width="14" height="14" rx="4"/>
-                  <path d="M9 10h.01M15 10h.01M9 15c1.8 1.3 4.2 1.3 6 0M12 2v3M12 19v3M2 12h3M19 12h3"/>
-                </svg>
-              </div>
-              <span class="service-number">04</span>
-            </div>
-            <h3>Inteligencia Artificial</h3>
-            <p>
-              Integramos IA generativa, automatización y analítica para mejorar productividad,
-              decisiones, atención al cliente y creación de valor.
-            </p>
-            <div class="service-tags">
-              <span>IA generativa</span>
-              <span>Automatización</span>
-              <span>Agentes</span>
-              <span>Analítica</span>
-            </div>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section class="section" id="nosotros">
-      <div class="container">
-        <div class="value-shell reveal">
-          <div class="value-visual" aria-hidden="true">
-            <div class="metric-card one">
-              <strong>+Velocidad</strong>
-              <span>Decisiones más ágiles</span>
-              <div class="chart">
-                <i></i><i></i><i></i><i></i><i></i>
-              </div>
-            </div>
-            <div class="metric-card two">
-              <strong>360°</strong>
-              <span>Visión integral del negocio</span>
-            </div>
-            <div class="metric-card three">
-              <strong>IA + Talento</strong>
-              <span>Tecnología aplicada con criterio humano</span>
-            </div>
-          </div>
-
-          <div>
-            <span class="eyebrow">Nuestra propuesta</span>
-            <h2 class="section-title" style="font-size:clamp(2.2rem,4.7vw,4.5rem)">
-              Estrategia, creatividad y tecnología
-              <span class="gradient-text">en una sola misión.</span>
-            </h2>
-            <p class="section-subtitle">
-              No vendemos recetas genéricas. Trabajamos contigo para entender el reto,
-              construir la solución y acompañar la ejecución.
-            </p>
-
-            <div class="check-list">
-              <div class="check-item">
-                <span class="check-icon">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="m5 12 4 4L19 6"/>
-                  </svg>
-                </span>
-                <span><strong>Enfoque práctico:</strong> entregables claros, priorizados y aplicables.</span>
-              </div>
-              <div class="check-item">
-                <span class="check-icon">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="m5 12 4 4L19 6"/>
-                  </svg>
-                </span>
-                <span><strong>Visión comercial:</strong> cada iniciativa se conecta con crecimiento y cliente.</span>
-              </div>
-              <div class="check-item">
-                <span class="check-icon">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="m5 12 4 4L19 6"/>
-                  </svg>
-                </span>
-                <span><strong>Innovación responsable:</strong> tecnología útil, medible y alineada al negocio.</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="section" id="metodo">
-      <div class="container">
-        <div class="reveal">
-          <span class="eyebrow">Método Rocket</span>
-          <h2 class="section-title">
-            De la idea al impacto,
-            <span class="gradient-text">sin perder impulso.</span>
-          </h2>
-          <p class="section-subtitle">
-            Un proceso simple, colaborativo y orientado a resultados para convertir desafíos
-            en iniciativas concretas.
-          </p>
-        </div>
-
-        <div class="process-grid">
-          <article class="process-card reveal">
-            <div class="process-step">1</div>
-            <h3>Exploramos</h3>
-            <p>Entendemos el negocio, los clientes, las metas y los puntos de fricción.</p>
-          </article>
-
-          <article class="process-card reveal">
-            <div class="process-step">2</div>
-            <h3>Diseñamos</h3>
-            <p>Construimos una solución estratégica, creativa y viable para tu realidad.</p>
-          </article>
-
-          <article class="process-card reveal">
-            <div class="process-step">3</div>
-            <h3>Implementamos</h3>
-            <p>Convertimos la propuesta en acciones, herramientas, campañas o automatizaciones.</p>
-          </article>
-
-          <article class="process-card reveal">
-            <div class="process-step">4</div>
-            <h3>Escalamos</h3>
-            <p>Medimos, aprendemos y optimizamos para sostener el crecimiento.</p>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section class="stats-band">
-      <div class="container stats-grid">
-        <div class="stat reveal">
-          <strong data-target="4">0</strong>
-          <span>Áreas integradas</span>
-        </div>
-        <div class="stat reveal">
-          <strong data-target="360">0</strong>
-          <span>Visión de negocio</span>
-        </div>
-        <div class="stat reveal">
-          <strong data-target="24">0</strong>
-          <span>Enfoque continuo</span>
-        </div>
-        <div class="stat reveal">
-          <strong data-target="100">0</strong>
-          <span>Orientación al impacto</span>
-        </div>
-      </div>
-    </section>
-
-    <section class="section">
-      <div class="container">
-        <div class="cta-box reveal">
-          <div class="cta-content">
-            <div>
-              <h2>Tu próximo salto empieza aquí.</h2>
-              <p>
-                Conversemos sobre el reto que quieres resolver y diseñemos una ruta de acción
-                para hacerlo despegar.
-              </p>
-            </div>
-            <div class="cta-actions">
-              <a class="btn btn-primary" href="#contacto">Iniciar conversación</a>
-              <a class="btn btn-secondary" href="#servicios">Ver servicios</a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="section" id="contacto">
-      <div class="container">
-        <div class="reveal">
-          <span class="eyebrow">Contacto</span>
-          <h2 class="section-title">
-            Hagamos que tu proyecto
-            <span class="gradient-text">despegue.</span>
-          </h2>
-          <p class="section-subtitle">
-            Cuéntanos qué quieres mejorar, vender, transformar o automatizar.
-          </p>
-        </div>
-
-        <div class="contact-grid">
-          <aside class="contact-info reveal">
-            <h3>Rocket SA</h3>
-            <p>
-              Consultoría, ventas, marketing e inteligencia artificial para empresas
-              que quieren crecer con estrategia.
-            </p>
-
-            <div class="contact-list">
-              <div>
-                <span class="icon">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M4 4h16v16H4z"/><path d="m4 6 8 6 8-6"/>
-                  </svg>
-                </span>
-                contacto@rocketsa.com
-              </div>
-              <div>
-                <span class="icon">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M22 16.9v3a2 2 0 0 1-2.18 2A19.8 19.8 0 0 1 3 5.18 2 2 0 0 1 5 3h3a2 2 0 0 1 2 1.72c.12.9.33 1.78.62 2.62a2 2 0 0 1-.45 2.11L9 10.62a16 16 0 0 0 4.38 4.38l1.17-1.17a2 2 0 0 1 2.11-.45c.84.29 1.72.5 2.62.62A2 2 0 0 1 22 16.9Z"/>
-                  </svg>
-                </span>
-                +51 999 999 999
-              </div>
-              <div>
-                <span class="icon">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M12 21s7-4.4 7-11a7 7 0 1 0-14 0c0 6.6 7 11 7 11Z"/>
-                    <circle cx="12" cy="10" r="2.3"/>
-                  </svg>
-                </span>
-                Lima, Perú
-              </div>
-            </div>
-
-            <div class="socials" aria-label="Redes sociales">
-              <a class="social-link" href="#" aria-label="LinkedIn" title="Reemplaza este enlace por tu LinkedIn">
-                <svg viewBox="0 0 24 24" fill="currentColor">
-                  <path d="M6.5 8.3H3.2V21h3.3V8.3ZM4.8 3A1.9 1.9 0 1 0 4.8 6.8 1.9 1.9 0 0 0 4.8 3ZM21 13.7c0-3.8-2-5.6-4.7-5.6-2.2 0-3.2 1.2-3.8 2V8.3H9.2V21h3.3v-6.3c0-1.7.3-3.3 2.4-3.3 2 0 2 1.9 2 3.4V21H21v-7.3Z"/>
-                </svg>
-              </a>
-              <a class="social-link" href="#" aria-label="Instagram" title="Reemplaza este enlace por tu Instagram">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <rect x="3" y="3" width="18" height="18" rx="5"/>
-                  <circle cx="12" cy="12" r="4"/>
-                  <circle cx="17.3" cy="6.8" r="1" fill="currentColor" stroke="none"/>
-                </svg>
-              </a>
-              <a class="social-link" href="#" aria-label="Facebook" title="Reemplaza este enlace por tu Facebook">
-                <svg viewBox="0 0 24 24" fill="currentColor">
-                  <path d="M14 8h3V4.5c-.5-.1-1.8-.2-3.4-.2-3.3 0-5.6 2-5.6 5.8V13H4v4h4v7h5v-7h3.3l.7-4H13v-2.5C13 9.3 13.3 8 14 8Z"/>
-                </svg>
-              </a>
-              <a class="social-link" href="#" aria-label="TikTok" title="Reemplaza este enlace por tu TikTok">
-                <svg viewBox="0 0 24 24" fill="currentColor">
-                  <path d="M14 3h3.2c.3 1.8 1.4 3.2 3.1 4v3.3c-1.2 0-2.3-.3-3.3-.8V16a6 6 0 1 1-6-6c.4 0 .7 0 1 .1v3.4a2.8 2.8 0 1 0 2 2.7V3Z"/>
-                </svg>
-              </a>
-            </div>
-          </aside>
-
-          <form class="contact-form reveal" id="contactForm">
-            <div class="form-grid">
-              <div class="field">
-                <label for="name">Nombre</label>
-                <input id="name" name="name" type="text" placeholder="Tu nombre" required />
-              </div>
-
-              <div class="field">
-                <label for="email">Correo</label>
-                <input id="email" name="email" type="email" placeholder="correo@empresa.com" required />
-              </div>
-
-              <div class="field">
-                <label for="company">Empresa</label>
-                <input id="company" name="company" type="text" placeholder="Nombre de la empresa" />
-              </div>
-
-              <div class="field">
-                <label for="service">Servicio de interés</label>
-                <select id="service" name="service">
-                  <option>Consultoría</option>
-                  <option>Ventas</option>
-                  <option>Marketing</option>
-                  <option>Inteligencia Artificial</option>
-                </select>
-              </div>
-
-              <div class="field full">
-                <label for="message">Cuéntanos tu reto</label>
-                <textarea id="message" name="message" placeholder="Describe brevemente qué necesitas..." required></textarea>
-              </div>
-
-              <div class="field full">
-                <button class="btn btn-primary" type="submit">
-                  Enviar consulta
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="m22 2-7 20-4-9-9-4Z"/>
-                    <path d="M22 2 11 13"/>
-                  </svg>
-                </button>
-                <p class="form-note">
-                  Este formulario es demostrativo. Conéctalo con tu correo, CRM o servicio de formularios.
-                </p>
-              </div>
-            </div>
-          </form>
-        </div>
-      </div>
-    </section>
-  </main>
-
-  <footer>
-    <div class="container footer-inner">
-      <div>© <span id="year"></span> Rocket SA. Todos los derechos reservados.</div>
-      <div class="footer-links">
-        <a href="#inicio">Inicio</a>
-        <a href="#servicios">Servicios</a>
-        <a href="#contacto">Contacto</a>
-      </div>
-    </div>
-  </footer>
-
-  <button class="float-btn" id="floatBtn" aria-label="Abrir contacto rápido" title="Contacto rápido">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round">
-      <path d="M21 11.5a8.4 8.4 0 0 1-9 8.4 8.7 8.7 0 0 1-3.7-.8L3 21l1.8-5.1a8.5 8.5 0 1 1 16.2-4.4Z"/>
-      <path d="M8.8 9.1c.3 2.6 2.1 4.5 4.7 4.9"/>
-    </svg>
-  </button>
-
-  <div class="toast" id="toast" role="status" aria-live="polite"></div>
-
-  <script>
-    const nav = document.getElementById("nav");
-    const menuBtn = document.getElementById("menuBtn");
-    const navLinks = [...document.querySelectorAll(".nav-links a")];
-    const toast = document.getElementById("toast");
-
-    menuBtn.addEventListener("click", () => {
-      const isOpen = nav.classList.toggle("open");
-      menuBtn.setAttribute("aria-expanded", String(isOpen));
-    });
-
-    navLinks.forEach(link => {
-      link.addEventListener("click", () => {
-        nav.classList.remove("open");
-        menuBtn.setAttribute("aria-expanded", "false");
-      });
-    });
-
-    const sections = [...document.querySelectorAll("main section[id]")];
-
-    const setActiveLink = () => {
-      const scrollY = window.scrollY + 160;
-      let current = "inicio";
-
-      sections.forEach(section => {
-        if (scrollY >= section.offsetTop) current = section.id;
-      });
-
-      navLinks.forEach(link => {
-        link.classList.toggle("active", link.getAttribute("href") === `#${current}`);
-      });
-    };
-
-    window.addEventListener("scroll", setActiveLink, { passive: true });
-    setActiveLink();
-
-    const revealObserver = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add("visible");
-          revealObserver.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.12 });
-
-    document.querySelectorAll(".reveal").forEach(el => revealObserver.observe(el));
-
-    const showToast = (message) => {
-      toast.textContent = message;
-      toast.classList.add("show");
-      window.clearTimeout(window.toastTimer);
-      window.toastTimer = window.setTimeout(() => toast.classList.remove("show"), 3200);
-    };
-
-    document.getElementById("contactForm").addEventListener("submit", (event) => {
-      event.preventDefault();
-      const name = document.getElementById("name").value.trim();
-      showToast(`Gracias${name ? ", " + name : ""}. Conecta este formulario con tu correo o CRM para recibir mensajes.`);
-      event.target.reset();
-    });
-
-    document.getElementById("floatBtn").addEventListener("click", () => {
-      document.getElementById("contacto").scrollIntoView({ behavior: "smooth" });
-    });
-
-    document.querySelectorAll(".social-link").forEach(link => {
-      link.addEventListener("click", (event) => {
-        if (link.getAttribute("href") === "#") {
-          event.preventDefault();
-          showToast("Reemplaza este enlace por la URL real de tu red social.");
-        }
-      });
-    });
-
-    const counters = document.querySelectorAll("[data-target]");
-    const counterObserver = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (!entry.isIntersecting) return;
-
-        const el = entry.target;
-        const target = Number(el.dataset.target);
-        const duration = 1200;
-        const start = performance.now();
-
-        const animate = (now) => {
-          const progress = Math.min((now - start) / duration, 1);
-          const eased = 1 - Math.pow(1 - progress, 3);
-          el.textContent = Math.round(target * eased) + (target === 360 ? "°" : target === 100 ? "%" : "+");
-          if (progress < 1) requestAnimationFrame(animate);
-        };
-
-        requestAnimationFrame(animate);
-        counterObserver.unobserve(el);
-      });
-    }, { threshold: 0.6 });
-
-    counters.forEach(counter => counterObserver.observe(counter));
-
-    document.getElementById("year").textContent = new Date().getFullYear();
-  </script>
-</body>
-</html>
+          <div class="portrait-card">
+            <div class="portrait-frame">
+              <img
+                src="data:image/webp;base64,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
